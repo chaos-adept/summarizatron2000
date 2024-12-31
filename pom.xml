@@ -1,0 +1,208 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.chaosadept</groupId>
+	<artifactId>summaryzatron2000</artifactId>
+	<version>3.0.0.0-SNAPSHOT</version>
+	<name>summaryzatron2000</name>
+	<packaging>jar</packaging>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<java.version>17</java.version>
+		<spring-boot.version>3.2.0</spring-boot.version>
+		<lombok.version>1.18.24</lombok.version>
+	</properties>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>3.2.0</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+	<repositories>
+		<repository>
+			<id>mchv-release</id>
+			<name>MCHV Release Apache Maven Packages</name>
+			<url>https://mvn.mchv.eu/repository/mchv</url>
+		</repository>
+		<repository>
+			<id>mchv-snapshot</id>
+			<name>MCHV Snapshot Apache Maven Packages</name>
+			<url>https://mvn.mchv.eu/repository/mchv-snapshot</url>
+		</repository>
+	</repositories>
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>it.tdlight</groupId>
+				<artifactId>tdlight-java-bom</artifactId>
+				<version>3.4.0+td.1.8.26</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+	<dependencies>
+		<!-- TDLight -->
+		<dependency>
+			<groupId>it.tdlight</groupId>
+			<artifactId>tdlight-java</artifactId>
+			<classifier>jdk8</classifier>
+		</dependency>
+
+		<!-- TDLight natives -->
+		<dependency>
+			<groupId>it.tdlight</groupId>
+			<artifactId>tdlight-natives</artifactId>
+			<classifier>linux_amd64_gnu_ssl1</classifier>
+		</dependency>
+		<dependency>
+			<groupId>it.tdlight</groupId>
+			<artifactId>tdlight-natives</artifactId>
+			<classifier>linux_amd64_clang_ssl3</classifier>
+		</dependency>
+		<dependency>
+			<groupId>it.tdlight</groupId>
+			<artifactId>tdlight-natives</artifactId>
+			<classifier>linux_amd64_gnu_ssl3</classifier>
+		</dependency>
+		<dependency>
+			<groupId>it.tdlight</groupId>
+			<artifactId>tdlight-natives</artifactId>
+			<classifier>windows_amd64</classifier>
+		</dependency>
+		<dependency>
+			<groupId>it.tdlight</groupId>
+			<artifactId>tdlight-natives</artifactId>
+			<classifier>macos_amd64</classifier>
+		</dependency>
+		<dependency>
+			<groupId>it.tdlight</groupId>
+			<artifactId>tdlight-natives</artifactId>
+			<classifier>macos_arm64</classifier>
+		</dependency>
+
+		<dependency>
+			<groupId>com.google.zxing</groupId>
+			<artifactId>core</artifactId>
+			<version>3.5.3</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.lmax</groupId>
+			<artifactId>disruptor</artifactId>
+			<version>3.4.4</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+			<version>2.17.2</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.17.2</version>
+		</dependency>
+
+
+		<!-- Lombok for getters, setters, and logging annotations -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<scope>provided</scope>
+			<version>${lombok.version}</version>
+		</dependency>
+
+		<!-- spring related -->
+
+		<!-- Spring Boot CLI, Logging, and Configuration -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter</artifactId>
+		</dependency>
+
+		<!-- Spring Boot JPA for Data Persistence -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+
+		<!-- H2 Database for persistence on disk -->
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>6.5.2.Final</version>
+		</dependency>
+
+		<!-- Spring Boot Configuration Processor (for automatic config class generation) -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-configuration-processor</artifactId>
+			<optional>true</optional>
+		</dependency>
+
+
+		<!--- junit -->
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-api</artifactId>
+			<version>5.7.0</version>
+			<scope>test</scope>
+		</dependency>
+
+	</dependencies>
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-clean-plugin</artifactId>
+				<version>3.2.0</version>
+			</plugin>
+			<plugin>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>3.3.1</version>
+			</plugin>
+			<plugin>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>3.3.0</version>
+			</plugin>
+			<plugin>
+				<artifactId>maven-install-plugin</artifactId>
+				<version>3.1.1</version>
+			</plugin>
+			<plugin>
+				<artifactId>maven-deploy-plugin</artifactId>
+				<version>3.1.1</version>
+			</plugin>
+
+
+			<!-- Spring Boot Maven Plugin -->
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+
+			<!-- Compiler Plugin -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+					<compilerArgs>
+						<arg>-parameters</arg>
+					</compilerArgs>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>

@@ -1,0 +1,51 @@
+telegram:
+  api-token-id: 22029047
+  api-token-hash: "008222764f2f1632903fb06e44883c8a"
+  chat-title: "Chat Test Group"
+  session-path: "test-tdlight-session"
+  file-directory: "files"
+  duration: 11200
+
+spring:
+  datasource:
+    url: jdbc:h2:file:./test-database/db-test-2
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    database-platform: org.hibernate.dialect.H2Dialect
+
+cron:
+  expression: "${CRON_EXPRESSION:*/30 * * * * ?}"
+  finishAsyncExpression: "${CRON_EXPRESSION:*/15 * * * * ?}"
+  minNumMessagesToSummarize: 1
+  firstRunMessageMaxCount: 1
+
+gpt:
+  model: ${GPT_MODEL:LITE}
+  maxCharLen: 2000
+  api-key: ${GPT_API_KEY}
+  cloudId: ${CLOUD_FOLDER_ID}
+  partSummaryPromtFile: ${PART_SUMMARY_PROMPT_FILE:classpath:/part_summary_promt-integration-test.txt}
+  combinedSummaryPromtFile: ${COMBINED_SUMMARY_PROMPT_FILE:classpath:/combined_parts_summary_promnt.txt}
+  enableImageSummaryGeneration: ${IMAGE_GEN_ENABLED:false}
+
+hashtag: "#summaryzatron2000"
+
+blacklist:
+  keywords:
+    - "#summarizatron2000"
+    - "СВО"
+    - "Трамп"
+    - "Трампа"
+    - "Байден"
+    - "Выборы"
+    - "демократическ"
+    - "протест"
+    - "госуслуг"
+    - "Путин"
+    - "#summaryzatron2000"
+
